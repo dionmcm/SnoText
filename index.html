@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SNOMEDify - SNOMED CT ID Replacement Tool</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>SNOMEDify - SNOMED CT ID Replacement Tool</h1>
+
+  <!-- FHIR Endpoint Input -->
+  <label for="fhirEndpoint">FHIR Endpoint:</label>
+  <input type="text" id="fhirEndpoint" value="https://r4.ontoserver.csiro.au/fhir" />
+
+  <!-- Text Input for SNOMED CT IDs -->
+  <label for="inputText">Enter Text:</label>
+  <textarea id="inputText" rows="5" cols="50"></textarea>
+
+  <!-- Replacement Pattern Selection -->
+  <label for="replacementPattern">Replacement Pattern:</label>
+  <select id="replacementPattern">
+    <option value="pipe">SNOMED CT ID|Preferred Term|</option>
+    <option value="underscore">SNOMED CT ID_Preferred_Term</option>
+  </select>
+
+  <!-- Button to Perform Replacement -->
+  <button onclick="replaceSnomedIds()">Replace SNOMED CT IDs</button>
+
+  <!-- Output Text -->
+  <label for="outputText">Output:</label>
+  <textarea id="outputText" rows="5" cols="50" readonly></textarea>
+
+  <!-- Snackbar for Notifications -->
+  <div id="snackbar"></div>
+
+  <script src="script.ts"></script>
+</body>
+</html>
