@@ -32,7 +32,7 @@ async function replaceSnomedIds() {
       
       if (response.ok) {
         const data = await response.json();
-        const preferredTerm = data.parameter.find(param => param.name === "display").value;
+        const preferredTerm = data.parameter.find(param => param.name === "display").valueString;
 
         // Modify term based on replacement pattern
         if (replacementPattern === "pipe") {
