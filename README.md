@@ -1,6 +1,6 @@
 # SnoText - SNOMED CT ID Replacement Tool
 
-SnoText is a web tool that replaces SNOMED CT IDs within a text block with the preferred terms from the SNOMED CT terminology. Using the [FHIR API from Ontoserver](https://r4.ontoserver.csiro.au/fhir), the tool retrieves the preferred term associated with each SNOMED CT ID and inserts it into the text. The user can select between two replacement patterns.
+SnoText is a web tool that replaces SNOMED CT IDs within a text block with the preferred terms from the SNOMED CT terminology. Using the FHIR API (from Ontoserver's R4 Sandbox server by default https://r4.ontoserver.csiro.au/fhir), the tool retrieves the preferred term associated with each SNOMED CT ID and inserts it into the text. The user can select between two replacement patterns.
 
 ![Screenshot of SnoText tool](screenshot.png)
 
