@@ -1,3 +1,45 @@
+// Theme toggle functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggle = document.getElementById('theme-switch');
+
+  // Check if user has previously selected a theme
+  const savedTheme = localStorage.getItem('theme');
+
+  // Check system preference
+  const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  // Set initial state
+  if (savedTheme === 'dark' || (savedTheme === null && prefersDarkMode)) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    themeToggle.checked = true;
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    themeToggle.checked = false;
+  }
+
+  // Handle toggle changes
+  themeToggle.addEventListener('change', () => {
+    if (themeToggle.checked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+    }
+  });
+
+  // Listen for system preference changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    // Only update if user hasn't manually selected a theme
+    if (!localStorage.getItem('theme')) {
+      const newTheme = e.matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      themeToggle.checked = e.matches;
+    }
+  });
+});
+
+
 // Function to show snackbar notification
 function showSnackbar(message) {
   const snackbar = document.getElementById("snackbar");

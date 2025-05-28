@@ -1,83 +1,177 @@
+:root {
+  /* Light mode with darker background elements */
+  --background-color: #d6d2c5;
+  --text-color: #333333;
+  --card-background: #d0d0d0;
+  --input-background: #e8e8e8;
+  --border-color: #b8b8b8;
+  --button-bg: #4a86e8;
+  --button-text: #ffffff;
+  --button-hover-bg: #0056b3;
+  --notification-bg: #f8d7da;
+  --notification-text: #721c24;
+}
+
+/* Manual dark theme toggle - this must come AFTER the :root styles */
+[data-theme="dark"] {
+  --background-color: #222222;
+  --text-color: #f0f0f0;
+  --card-background: #333333;
+  --input-background: #444444;
+  --border-color: #555555;
+  --button-bg: #5c94f0;
+  --button-text: #ffffff;
+  --button-hover-bg: #3a72c9;
+  --notification-bg: #563e42;
+  --notification-text: #f8d7da;
+}
+
 /* General styling */
 body {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header styling */
+h1 {
+  font-size: 24px;
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Input section styling */
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.container, .card {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+}
+
+textarea, input, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+
+  background-color: var(--input-background);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+
+}
+
+/* Button styling */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+/* Snackbar styling */
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: var(--notification-bg);
+  color: var(--notification-text);
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 16px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Fade in and out effects for the snackbar */
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
   }
-  
-  /* Header styling */
-  h1 {
-    font-size: 24px;
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Input section styling */
-  label {
-    display: block;
-    margin-top: 15px;
-    font-weight: bold;
-  }
-  
-  textarea, input, select {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  /* Button styling */
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Snackbar styling */
-  #snackbar {
-    visibility: hidden;
-    min-width: 250px;
-    margin-left: -125px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 2px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
+  to {
     bottom: 30px;
-    font-size: 16px;
+    opacity: 1;
   }
-  
-  #snackbar.show {
-    visibility: visible;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
   }
-  
-  /* Fade in and out effects for the snackbar */
-  @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+  to {
+    bottom: 0;
+    opacity: 0;
   }
-  
-  @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
-  }
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.theme-toggle label {
+  margin-top: 0; /* Remove top margin that could be inherited from other labels */
+  margin-bottom: 0; /* Ensure no extra spacing below */
+  display: flex; /* Allow label to align properly */
+  align-items: center; /* Center label text vertically */
+  height: 20px; /* Match the toggle switch height */
+}
+
+.theme-toggle input {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background-color: var(--border-color);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.theme-toggle input::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  background-color: var(--input-background);
+  transition: transform 0.3s;
+}
+
+.theme-toggle input:checked {
+  background-color: var(--button-bg);
+}
+
+.theme-toggle input:checked::before {
+  transform: translateX(20px);
+}
