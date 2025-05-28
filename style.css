@@ -175,3 +175,75 @@ button:hover {
 .theme-toggle input:checked::before {
   transform: translateX(20px);
 }
+
+/* Progress indicator styling */
+#progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-content {
+  background-color: var(--card-background);
+  color: var(--text-color);
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+}
+
+#progress-message {
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.progress-bar-container {
+  height: 20px;
+  background-color: var(--input-background);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+#progress-bar {
+  height: 100%;
+  background-color: var(--button-bg);
+  width: 0%;
+  transition: width 0.3s;
+}
+
+.progress-stats {
+  text-align: center;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+
+#cancel-button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  /* Use a different color for cancel button to make it stand out */
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+#cancel-button:hover {
+  background-color: #bd2130;
+}
